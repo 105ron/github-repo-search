@@ -5,9 +5,8 @@ import PropTypes from 'prop-types';
 const Card = styled.div`
   display: flex;
   align-items: center;
-  width: 80%;
-  max-width: 700px;
-  height: 400px;
+  width: 700px;
+  height: 300px;
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 8px 10px 5px -1px rgba(105,96,105,1);
@@ -64,11 +63,11 @@ function searchBar(props) {
     <Card>
       <FieldWrapper>
         <Label>
-          Input GitHub Username:
           <Input
             onChange={changed}
             value={value}
             type="text"
+            placeholder="Enter Repository Name"
           />
         </Label>
         <Button>
