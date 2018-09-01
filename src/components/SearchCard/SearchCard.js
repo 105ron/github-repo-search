@@ -19,28 +19,6 @@ const FieldWrapper = styled.div`
   align-items: flex-end;
 `;
 
-const Label = styled.label`
-  display: block;
-  color: #7e7e7e;
-  font-family: sans-serif;
-
-`;
-
-const Input = styled.input`
-  font-size: 16px;
-  display: block;
-  width: 500px;
-  border: none;
-  color: #525252;
-  height: 30px;
-  line-height: 15px;
-  margin-top: 2px;
-  outline: 0 none;
-  padding: 5px 0px 5px 5px;
-  border-radius: 2px;
-  background: #DFDFDF;
-`;
-
 const Button = styled.button`
   width: 100px;
   background: #FFF;
@@ -56,20 +34,12 @@ const Button = styled.button`
   }
 `;
 
-
-function searchBar(props) {
-  const { changed, value } = props;
+function searchCard(props) {
+  const { children } = props;
   return (
     <Card>
       <FieldWrapper>
-        <Label>
-          <Input
-            onChange={changed}
-            value={value}
-            type="text"
-            placeholder="Enter Repository Name"
-          />
-        </Label>
+        {children}
         <Button>
           Submit
         </Button>
@@ -78,9 +48,8 @@ function searchBar(props) {
   );
 }
 
-searchBar.propTypes = {
-  changed: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
+searchCard.propTypes = {
+  children: PropTypes.object.isRequired,
 };
 
-export default searchBar;
+export default searchCard;
