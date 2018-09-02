@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import Autocomplete from 'react-autocomplete';
 import { throttle, debounce } from 'throttle-debounce';
-import { inputStyling } from '../../UI/globalCSS';
+import { inputStyling, dropDownStyling } from '../../UI/globalCSS';
 import axios from 'axios';
+
+const Result = styled.div`
+  background-color: ${props => props.highlight ? '#cecece' : 'white'};
+  padding: ${props => props.content ? '4px' : '0'};
+  font-family: sans-serif;
+  font-size: 16px;
+`;
 
 class SearchInput extends Component {
   constructor(props) {
@@ -24,7 +32,6 @@ class SearchInput extends Component {
     const url = `https://api.github.com/search/repositories?q=${searchText}+in%3Aname&per_page=10`;
     axios.get(url)
       .then(response => {
-        console.log(response)
         const results = Object.keys(response.data.items).map(key => {
           const repo = response.data.items[key]
           return {
@@ -49,9 +56,9 @@ class SearchInput extends Component {
 
   renderItem(item, isHighlighted){
     return (
-        <div key={item.id} style={{ background: isHighlighted ? 'lightgray' : 'white' }}>
+        <Result key={item.id} highlight={isHighlighted} content={item.name}>
           {item.name}
-        </div>   
+        </Result>   
     ); 
   }
 
@@ -66,16 +73,15 @@ class SearchInput extends Component {
     });
   }
 
-  onSelect = (val) => {
+  onSelect = (value) => {
     this.setState({
-        value: val
+      searchTerm: value,
     });
   }
 
   getItemValue = item => {
-    return `${item.name} from getItemValue`;
+    return item.name;
   }
-
 
   render() {
     const { searchTerm, autocompleteData } = this.state;
@@ -83,6 +89,7 @@ class SearchInput extends Component {
       <Autocomplete
         key="unique"
         inputProps={{ style: inputStyling}}
+        menuStyle={dropDownStyling}
         getItemValue={this.getItemValue}
         items={autocompleteData}
         renderItem={this.renderItem}
