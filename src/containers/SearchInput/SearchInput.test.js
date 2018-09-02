@@ -29,6 +29,4 @@ describe('<SearchInput />', () => {
     wrapper.setState({ searchTerm: 'bar' });
     expect(wrapper.find('.button').prop('disabled')).toBe(false);
   });
-
-
 });
