@@ -12,13 +12,18 @@ const Layout = styled.div`
   align-items: center;
   margin: 0;
   padding: 0;
-  min-width: 1200px;
+  min-width: 900px;
   min-height: 600px;
   height: 100vh;
   background: #d3cce3;
   background-image: url(${octocat}), linear-gradient(to right, #e0eafc, #cfdef3);
   background-position: bottom right;
   background-repeat: no-repeat;
+  @media (max-width: 900px) {
+    min-width: 400px;
+    min-height: 300px;
+    background-image: linear-gradient(to right, #e0eafc, #cfdef3);
+  }
 `;
 
 function App() {

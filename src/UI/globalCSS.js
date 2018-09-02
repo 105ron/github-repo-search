@@ -9,14 +9,14 @@ const globalStyle = `
 `;
 
 const inputStyling = {
+  width: '100%',
+  height: '30px',
   position: 'relatative',
   backgoundColor: 'black',
   fontSize: '16px',
   display: 'block',
-  width: '500px',
   border: 'none',
   color: '#525252',
-  height: '30px',
   lineHeight: '15px',
   marginTop: '2px',
   outline: '0 none',

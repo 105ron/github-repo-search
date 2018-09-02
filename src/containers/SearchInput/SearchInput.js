@@ -13,6 +13,10 @@ const Card = styled.div`
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 8px 10px 5px -1px rgba(105,96,105,1);
+  @media (max-width: 900px) {
+    width: 90%;
+    height: 180px;
+  }
 `;
 
 const FieldWrapper = styled.div`
@@ -20,6 +24,14 @@ const FieldWrapper = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: flex-end;
+`;
+
+const InputWrapper = styled.div`
+  width: 500px;
+  @media (max-width: 900px) {
+    width: 90%;
+    margin: 0 20px;
+  }
 `;
 
 const Button = styled.button`
@@ -38,6 +50,11 @@ const Button = styled.button`
     cursor: not-allowed;
     border: 1px solid #CCC;
     background-color: #FFF;
+  }
+  @media (max-width: 900px) {
+    width: auto;
+    padding: 8px;
+    margin-right: 20px;
   }
 `;
 
@@ -125,11 +142,13 @@ class SearchInput extends Component {
     return (
       <Card>
       <FieldWrapper>
+        <InputWrapper>
         <Autocomplete
           inputProps={{ 
             style: inputStyling,
-            placeholder: 'Start typing to search repositories'
+            placeholder: 'Type to start searching...'
           }}
+            wrapperProps={{style: {width: '100%', display: 'block'}}}
           menuStyle={dropDownStyling}
           getItemValue={this.getItemValue}
           items={autocompleteData}
@@ -138,6 +157,7 @@ class SearchInput extends Component {
           onChange={this.inputChangedHandler}
           onSelect={this.onSelect}
         />
+        </InputWrapper>
         <Button disabled={!searchTerm} >
           Submit
         </Button>
