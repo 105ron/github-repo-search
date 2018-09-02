@@ -33,7 +33,10 @@ const dropDownStyling = {
   fontSize: '90%',
   position: 'fixed',
   overflow: 'auto',
-  maxHeight: '50%',
+  maxHeight: '200px',
+  position: 'absolute',
+  left: '0',
+  top: '32px',
 };
 
 module.exports ={

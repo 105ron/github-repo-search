@@ -27,6 +27,7 @@ const FieldWrapper = styled.div`
 `;
 
 const InputWrapper = styled.div`
+  position: relative;
   width: 500px;
   @media (max-width: 900px) {
     width: 90%;
@@ -159,7 +160,7 @@ class SearchInput extends Component {
         />
         </InputWrapper>
         <Button className="button" disabled={!searchTerm} >
-          Submit
+          Search
         </Button>
       </FieldWrapper>
     </Card>
