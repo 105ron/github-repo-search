@@ -21,7 +21,7 @@ const Layout = styled.div`
   background-repeat: no-repeat;
   @media (max-width: 900px) {
     min-width: 400px;
-    min-height: 300px;
+    min-height: 500px;
     background-image: linear-gradient(to right, #e0eafc, #cfdef3);
   }
 `;

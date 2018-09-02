@@ -158,7 +158,7 @@ class SearchInput extends Component {
           onSelect={this.onSelect}
         />
         </InputWrapper>
-        <Button disabled={!searchTerm} >
+        <Button className="button" disabled={!searchTerm} >
           Submit
         </Button>
       </FieldWrapper>

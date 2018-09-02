@@ -2,6 +2,8 @@ module.exports = {
     "extends": "airbnb",
     "env": {
       "browser": true,
+      "jest": true
+    }
     },
     "rules": {
       "implicit-arrow-linebreak": 0,
