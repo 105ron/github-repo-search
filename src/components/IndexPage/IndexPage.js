@@ -1,7 +1,6 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import SearchCard from '../SearchCard/SearchCard';
 import SearchInput from '../../containers/SearchInput/SearchInput';
 import Aux from '../../hoc/Aux/Aux';
 
@@ -18,9 +17,7 @@ function indexPage() {
       <Title>
         GitHub Repo Search
       </Title>
-      <SearchCard>
-        <SearchInput />
-      </SearchCard>
+      <SearchInput />
     </Aux>
   );
 }

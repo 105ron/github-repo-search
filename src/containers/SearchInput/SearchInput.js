@@ -5,6 +5,42 @@ import { throttle, debounce } from 'throttle-debounce';
 import { inputStyling, dropDownStyling } from '../../UI/globalCSS';
 import axios from 'axios';
 
+const Card = styled.div`
+  display: flex;
+  align-items: center;
+  width: 700px;
+  height: 300px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 8px 10px 5px -1px rgba(105,96,105,1);
+`;
+
+const FieldWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-end;
+`;
+
+const Button = styled.button`
+  width: 100px;
+  background-color: #FFF;
+  cursor: pointer;
+  border: 1px solid #CCC;
+  padding: 8px 25px 8px 25px;
+  color: #333;
+  border-radius: 4px;
+  &:hover {
+    background-color: #EBEBEB;
+    border-color: #ADADAD;
+  }
+  &:disabled {
+    cursor: not-allowed;
+    border: 1px solid #CCC;
+    background-color: #FFF;
+  }
+`;
+
 const Result = styled.div`
   background-color: ${props => props.highlight ? '#cecece' : 'white'};
   padding: ${props => props.content ? '4px' : '0'};
@@ -28,8 +64,9 @@ class SearchInput extends Component {
     };
   }
 
-  retrieveGitHubData(searchText) {
-    const url = `https://api.github.com/search/repositories?q=${searchText}+in%3Aname&per_page=10`;
+  retrieveGitHubData(search) {
+    const trimmedSearch = search.trim();
+    const url = `https://api.github.com/search/repositories?q=${trimmedSearch}+in%3Aname&per_page=10`;
     axios.get(url)
       .then(response => {
         const results = Object.keys(response.data.items).map(key => {
@@ -86,17 +123,26 @@ class SearchInput extends Component {
   render() {
     const { searchTerm, autocompleteData } = this.state;
     return (
-      <Autocomplete
-        key="unique"
-        inputProps={{ style: inputStyling}}
-        menuStyle={dropDownStyling}
-        getItemValue={this.getItemValue}
-        items={autocompleteData}
-        renderItem={this.renderItem}
-        value={searchTerm}
-        onChange={this.inputChangedHandler}
-        onSelect={this.onSelect}
-      />
+      <Card>
+      <FieldWrapper>
+        <Autocomplete
+          inputProps={{ 
+            style: inputStyling,
+            placeholder: 'Start typing to search repositories'
+          }}
+          menuStyle={dropDownStyling}
+          getItemValue={this.getItemValue}
+          items={autocompleteData}
+          renderItem={this.renderItem}
+          value={searchTerm}
+          onChange={this.inputChangedHandler}
+          onSelect={this.onSelect}
+        />
+        <Button disabled={!searchTerm} >
+          Submit
+        </Button>
+      </FieldWrapper>
+    </Card>
     );
   }
 }
